@@ -3,22 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/RelativeLayout02"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@drawable/wave_home">
 
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/view3"
+        android:layout_width="359dp"
+        android:layout_height="363dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="326dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_marginStart="218dp"
+        android:layout_marginTop="-117dp"
+        android:layout_marginEnd="-166dp"
+        android:layout_marginBottom="485dp"
+        android:background="@drawable/baseline_circle_24" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="226dp"
+        android:layout_height="222dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="273dp"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="-88dp"
+        android:layout_marginBottom="233dp"
+        android:background="@drawable/baseline_circle_24" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -27,8 +42,41 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="430dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="481dp"
         app:srcCompat="@drawable/ic_home" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="287dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-147dp"
+        android:layout_marginTop="388dp"
+        android:layout_marginEnd="264dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/baseline_circle_24"
+        android:fontFamily="sans-serif-thin"
+        />
+
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="660dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="30dp"
+        android:letterSpacing="0.2"
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-light" />
+
 </RelativeLayout>

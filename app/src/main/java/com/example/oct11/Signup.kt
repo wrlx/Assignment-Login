@@ -1,6 +1,7 @@
 package com.example.oct11
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,35 +9,40 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlin.random.Random
 
 class Signup : AppCompatActivity() {
     private val userList = ArrayList<UserDetails>()
-    var userDetails = ArrayList<String>()
+
+
+    fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+        Toast.makeText(this, message, duration).show()
+    }
 
     fun doDataRetrival(name: String, email: String, password: String){
         val languageLV: ListView
         languageLV = findViewById(R.id.displayList)
 
-        if(name != null && email != null && password != null){
+        if(name != "" && email != "" && password != ""){
             var userId = generateRandomUserId(5)
-            userList.add(UserDetails(userId, name, email, password))
-//            var temp = userList.size
-//            var limit = temp-1
-//            val toast = Toast
-//                .makeText(applicationContext,
-//                    "$userList, $limit",
-//                    Toast.LENGTH_SHORT).show()
+            val details = UserDetailsClass().apply {
+                uName = name
+                uEmail = email
+                uPassword = password
+            }
+            details.also {
+                it.id = userId
+            }
+            details.let{
+                userList.add(UserDetails(it.id, it.uName, it.uEmail, it.uPassword))
+                loginData.set(it.uName, UserDetails(it.id, it.uName, it.uEmail, it.uPassword))
 
-//            for(i in 0..limit){
-//                userIdDisplay = userList[i].id
-//                userNameDisplay = userList[i].name
-//                userEmailDisplay = userList[i].email
-//                userPasswordDisplay = userList[i].password
-//                userDetails = userIdDisplay + ", " + userNameDisplay + ", " + userEmailDisplay + ", " + userPasswordDisplay
-//            }
+            }
+
+
             val adapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
                 this@Signup,
                 android.R.layout.simple_list_item_1,
@@ -45,6 +51,9 @@ class Signup : AppCompatActivity() {
             languageLV.adapter = adapter
 
             adapter.notifyDataSetChanged()
+
+        } else {
+            applicationContext.showToast("Fields shouldn't be blank")
         }
     }
 

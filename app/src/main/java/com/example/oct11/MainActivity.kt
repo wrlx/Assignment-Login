@@ -2,6 +2,7 @@ package com.example.oct11
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,32 +17,44 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
+    fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+        Toast.makeText(this, message, duration).show()
+    }
+
+
     fun doLoginCheck(user : String, password : String){
-        val storedUserName = "jinu"
-        val storedPassword = "password"
 
-        if (user == storedUserName && password == storedPassword){
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
-        } else{
-            val imageSet: ImageView
-            imageSet = findViewById(R.id.loginFail)
-            val fadeOutAnimator = ObjectAnimator.ofFloat(imageSet, "alpha", 1.0f, 0.0f)
-            fadeOutAnimator.duration = 3000
+        if (loginData.containsKey(user)) {
+            val keyToRetrieve = user
+            val retrievedObject = loginData[keyToRetrieve]
+            retrievedObject.let {
+                if(password == it?.password){
+                    applicationContext.showToast("Login Success")
+                    val message = "Hello, " + user
+                    val intent = Intent(this, Home::class.java)
+                    intent.putExtra("message_key", message)
+                    startActivity(intent)
 
-            val toast = Toast
-                .makeText(applicationContext,
-                    "Login Failed",
-                    Toast.LENGTH_SHORT).show()
+                }else{
 
-            imageSet.setImageResource(R.drawable.ic_login_fail)
+                    applicationContext.showToast("Login Failed")
 
-            fadeOutAnimator.start()
+                    val imageSet: ImageView
+                    imageSet = findViewById(R.id.loginFail)
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                imageSet.visibility = View.INVISIBLE
-            }, fadeOutAnimator.duration)
+                    val fadeOutAnimator = ObjectAnimator.ofFloat(imageSet, "alpha", 1.0f, 0.0f)
+                    fadeOutAnimator.duration = 3000
+                     imageSet.setImageResource(R.drawable.ic_login_fail)
+                    fadeOutAnimator.start()
+                     Handler(Looper.getMainLooper()).postDelayed({
+                        imageSet.visibility = View.INVISIBLE
+                    }, fadeOutAnimator.duration)
+                }
+            }
+        } else {
+            applicationContext.showToast("User doesn't exist")
         }
+
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

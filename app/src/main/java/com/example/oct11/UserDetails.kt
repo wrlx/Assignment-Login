@@ -6,3 +6,4 @@ data class UserDetails(
     val email: String,
     val password: String
 )
+val loginData = mutableMapOf<String , UserDetails>()
