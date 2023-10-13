@@ -25,8 +25,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="50dp">
+            android:layout_margin="50dp"
+            android:orientation="vertical">
 
 
             <EditText
@@ -34,49 +34,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="@string/user"
                 android:background="@drawable/round_corner"
                 android:drawableStart="@drawable/user"
+                android:ems="10"
+                android:hint="@string/user"
+                android:inputType="text"
                 android:paddingStart="8dp"
-                android:paddingEnd="16dp"/>
+                android:paddingEnd="16dp" />
 
             <EditText
                 android:id="@+id/signUpEmail"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="@string/email"
                 android:background="@drawable/round_corner"
                 android:drawableStart="@drawable/ic_email"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="text"
                 android:paddingStart="8dp"
-                android:paddingEnd="16dp"/>
+                android:paddingEnd="16dp" />
 
             <EditText
                 android:id="@+id/signUpPassword"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="20dp"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="@string/password"
                 android:background="@drawable/round_corner"
                 android:drawableStart="@drawable/password"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="text"
                 android:paddingStart="8dp"
                 android:paddingEnd="16dp" />
 
             <Button
                 android:id="@+id/signUpBtn"
                 android:layout_width="match_parent"
-                android:textSize="16dp"
                 android:layout_height="48dp"
-                android:text="@string/signup"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/purple_300"
-                />
+                android:text="@string/signup"
+                android:background="@drawable/round_corner_button"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 

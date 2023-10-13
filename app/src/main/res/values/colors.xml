@@ -8,6 +8,11 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="purple_800">#f25bdc</color>
     <color name="purple_900">#75FADDF6</color>
+    <color name="purple_1000">#90801BE4</color>
+    <color name="purple_1100">#811FE2</color>
+    <color name="purple_1200">#9A68CB</color>
+    <color name="purple_1300">#DC971FE2</color>
+
 
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
