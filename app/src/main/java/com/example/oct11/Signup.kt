@@ -5,15 +5,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.oct11.recycler.MainRecycler
+import com.example.oct11.recyclerOnline.MainRecyclerOnline
 import kotlin.random.Random
 
 class Signup : AppCompatActivity() {
@@ -90,12 +89,14 @@ class Signup : AppCompatActivity() {
         val etSignupPassword: EditText
         val btnSignUp: Button
         val btnShowUser: TextView
+        val btnShowCar: TextView
 
         etSignupName = findViewById(R.id.signUpName)
         etSignupEmail = findViewById(R.id.signUpEmail)
         etSignupPassword = findViewById(R.id.signUpPassword)
         btnSignUp = findViewById(R.id.signUpBtn)
         btnShowUser = findViewById(R.id.showUser)
+        btnShowCar = findViewById(R.id.showCar)
 
         btnSignUp.setOnClickListener{
             var userName = etSignupName.text.toString()
@@ -111,5 +112,11 @@ class Signup : AppCompatActivity() {
             startNewActivity(MainRecycler::class.java, dataMap)
         }
 
+        btnShowCar.setOnClickListener {
+            val dataMap = hashMapOf(
+                "message_key1" to "Sign Up Here!",
+            )
+            startNewActivity(MainRecyclerOnline::class.java, dataMap)
+        }
     }
 }

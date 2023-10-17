@@ -15,7 +15,10 @@
         android:theme="@style/Theme.Oct11"
         tools:targetApi="31">
         <activity
-            android:name=".MainRecycler"
+            android:name=".recyclerOnline.MainRecyclerOnline"
+            android:exported="false" />
+        <activity
+            android:name=".recycler.MainRecycler"
             android:exported="false" />
         <activity
             android:name=".Signup"

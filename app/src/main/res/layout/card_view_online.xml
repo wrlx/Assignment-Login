@@ -4,38 +4,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="120dp"
     android:layout_margin="10dp"
     app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="5dp">
 
 
 
         <TextView
-            android:id="@+id/textOne"
+            android:id="@+id/textOnlineOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="15dp"
             android:text="Item"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
              />
 
         <TextView
-            android:id="@+id/textTwo"
+            android:id="@+id/textOnlineTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="15dp"
             android:text="Item"
-            android:textSize="10sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginTop="5dp"/>
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
