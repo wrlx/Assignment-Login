@@ -11,9 +11,13 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val etMessageDisplay: TextView
-        val receivedMessage = intent.getStringExtra("message_key")
+        val etEmailDisplay: TextView
+        val firstMessage = intent.getStringExtra("message_key1")
+        val secondMessage = intent.getStringExtra("message_key2")
         etMessageDisplay = findViewById<TextView>(R.id.welcomeMessage)
-        etMessageDisplay.text = receivedMessage
+        etEmailDisplay = findViewById<TextView>(R.id.userEmail)
+        etMessageDisplay.text = firstMessage
+        etEmailDisplay.text = secondMessage
 
         val firstFragment = FirstFragment()
         val secondFragment = SecondFragment()

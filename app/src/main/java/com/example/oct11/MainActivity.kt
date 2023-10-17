@@ -30,11 +30,18 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, duration).show()
     }
 
-    fun Context.startNewActivity(destination: Class<*>, key: String, value: String) {
-        val intent = Intent(this, destination)
+//    fun Context.startNewActivity(destination: Class<*>, key: String, value: String) {
+//        val intent = Intent(this, destination)
+//        intent.putExtra(key, value)
+//        startActivity(intent)
+//    }
+fun Context.startNewActivity(destination: Class<*>, dataMap: HashMap<String, String>) {
+    val intent = Intent(this, destination)
+    for ((key, value) in dataMap) {
         intent.putExtra(key, value)
-        startActivity(intent)
     }
+    startActivity(intent)
+}
 
 
     fun doLoginCheck(user : String, password : String){
@@ -48,11 +55,18 @@ class MainActivity : AppCompatActivity() {
             val userAuthData = UserData(userTemp, passwordTemp)
             val result = quoteApi.postData(userAuthData)
             apiResponse = result
+            var userEmail = result.body()?.email.toString()
             try{
                 if(result.isSuccessful || (password == "admin" && userTemp == "admin")) {
                     Log.d("login : ", result.body().toString())
                     val message = "Hello, " + user
-                    startNewActivity(Home::class.java, "message_key", message)
+                    val dataMap = hashMapOf(
+                        "message_key1" to message,
+                        "message_key2" to userEmail,
+                    )
+                    startNewActivity(Home::class.java, dataMap)
+
+//                    startNewActivity(Home::class.java, "message_key", message)
                 }else{
                     applicationContext.showToast("Invalid Credentials")
                 }
@@ -112,7 +126,11 @@ class MainActivity : AppCompatActivity() {
             doLoginCheck(userName, password)
         }
         btnSignup.setOnClickListener {
-            startNewActivity(Home::class.java, "message_key", "Sign Up here!")
+            val dataMap = hashMapOf(
+                "message_key1" to "Sign Up Here!",
+            )
+            startNewActivity(Signup::class.java, dataMap)
+
         }
 
 
