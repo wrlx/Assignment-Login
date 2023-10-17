@@ -27,7 +27,7 @@ class Home : AppCompatActivity() {
         btnFirstFragment.setOnClickListener{
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.fragmentContainer, firstFragment).addToBackStack(null).commit()
-//                btnSecondFragment.setBackgroundColor(getResources().getColor(R.color.));
+
             }
         }
 
