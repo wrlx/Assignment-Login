@@ -58,7 +58,8 @@ class MainRecyclerOnline : AppCompatActivity() {
                     for (item in temp) {
                         val country = item.Country
                         val mfrName = item.Mfr_Name
-                        dataOnline.add(ItemsViewModelOnline(mfrName, country))
+                     val vType = item.VehicleTypes
+                        dataOnline.add(ItemsViewModelOnline(mfrName, country, vType))
                     }
                     runOnUiThread {
                         adapter.notifyDataSetChanged()

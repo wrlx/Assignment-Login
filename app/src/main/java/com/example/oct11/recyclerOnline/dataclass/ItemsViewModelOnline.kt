@@ -6,15 +6,21 @@ import android.os.Parcelable
 data class ItemsViewModelOnline(
     val textOne: String,
     val textTwo: String,
+    val vTp: List<VehicleType>
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
-        parcel.readString() ?: ""
+        parcel.readString() ?: "",
+        ArrayList<VehicleType>().apply {
+            parcel.readList(this, VehicleType::class.java.classLoader)
+        }
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(textOne)
         parcel.writeString(textTwo)
+        parcel.writeList(vTp)
     }
 
     override fun describeContents(): Int {

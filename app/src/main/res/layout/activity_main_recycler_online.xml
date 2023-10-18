@@ -21,10 +21,13 @@
         tools:context=".MainActivity"
         tools:layout_editor_absoluteX="0dp">
 
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewonline"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="516dp"
             tools:itemCount="5"
             tools:listitem="@layout/card_view_online">
 

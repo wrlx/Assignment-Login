@@ -2,7 +2,6 @@ package com.example.oct11
 
 
 import android.os.Bundle
-import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,13 +11,11 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.oct11.R
 import com.example.oct11.recyclerOnline.AdapterOnline
 import com.example.oct11.recyclerOnline.CarApiFetchable
 import com.example.oct11.recyclerOnline.RetrofitHelperCar
 import com.example.oct11.recyclerOnline.ThirdFragment
 import com.example.oct11.recyclerOnline.dataclass.ItemsViewModelOnline
-import com.example.oct11.recyclerOnline.dataclass.VehicleType
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -39,6 +36,7 @@ class SecondFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,71 +64,62 @@ class SecondFragment : Fragment() {
         val progerssBar = view.findViewById<ProgressBar>(R.id.progressBarRecycler)
 
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        try {
 
-        GlobalScope.launch {
+            GlobalScope.launch {
 //            progerssBar.visibility = View.VISIBLE
-            val result = carApi.getCarData()
+                val result = carApi.getCarData()
 
-            progerssBar.visibility = View.INVISIBLE
+                progerssBar.visibility = View.INVISIBLE
 
-            if (result != null) {
-                val temp = result.body()?.Results
+                if (result != null) {
+                    val temp = result.body()?.Results
 
-                if (temp != null) {
-                    for (item in temp) {
-                        val country = item.Country
-                        val mfrName = item.Mfr_Name
-                        val vType = item.VehicleTypes
-                        dataOnline.add(ItemsViewModelOnline(mfrName, country))
-                    }
+                    if (temp != null) {
+                        for (item in temp) {
+                            val country = item.Country
+                            val mfrName = item.Mfr_Name
+                            val vType = item.VehicleTypes
+                            dataOnline.add(ItemsViewModelOnline(mfrName, country, vType))
+                        }
 
-                    requireActivity().runOnUiThread {
-                        adapter.notifyDataSetChanged()
+                        requireActivity().runOnUiThread {
+                            adapter.notifyDataSetChanged()
+                        }
                     }
                 }
             }
+
+            adapter = AdapterOnline(dataOnline)
+            recyclerview.adapter = adapter
+
+        }catch (e: Exception) {
+            // Handle the exception here
+            Log.e("NetworkError", "An error occurred: ${e.message}")
+            progerssBar.visibility = View.INVISIBLE
         }
 
-        adapter = AdapterOnline(dataOnline)
-        recyclerview.adapter = adapter
-        adapter.setOnItemClickListener(object  : AdapterOnline.onItemClickListener{
+
+        adapter.setOnItemClickListener(object : AdapterOnline.onItemClickListener {
             override fun onItemClick(position: Int) {
-//                Log.d("mm","som")
                 val clickedItem = dataOnline[position]
 
-                // Create a bundle and add the Parcelable object
-                val bundle = Bundle()
-                bundle.putParcelable("clickedItem", clickedItem)
-                Log.d("sanu", clickedItem.toString())
-                val newFragment = ThirdFragment()
-                newFragment.arguments = bundle
+                val newFragment = ThirdFragment.newInstance(clickedItem)
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fragmentContainer, newFragment)
                 transaction.addToBackStack(null)
                 transaction.commit()
             }
-
-
         })
-//        progerssBar.visibility = View.GONE
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Fragment().apply {
+        fun newInstance(clickedItem: ItemsViewModelOnline) =
+            ThirdFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putParcelable("clickedItem", clickedItem)
                 }
             }
     }
