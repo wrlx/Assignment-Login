@@ -125,7 +125,6 @@
         android:background="@drawable/rectangel_button"
         android:textColor="@color/white"
         android:textSize="15sp"
-
         />
 
     <FrameLayout
