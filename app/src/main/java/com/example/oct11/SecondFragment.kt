@@ -16,7 +16,9 @@ import com.example.oct11.R
 import com.example.oct11.recyclerOnline.AdapterOnline
 import com.example.oct11.recyclerOnline.CarApiFetchable
 import com.example.oct11.recyclerOnline.RetrofitHelperCar
+import com.example.oct11.recyclerOnline.ThirdFragment
 import com.example.oct11.recyclerOnline.dataclass.ItemsViewModelOnline
+import com.example.oct11.recyclerOnline.dataclass.VehicleType
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -78,6 +80,7 @@ class SecondFragment : Fragment() {
                     for (item in temp) {
                         val country = item.Country
                         val mfrName = item.Mfr_Name
+                        val vType = item.VehicleTypes
                         dataOnline.add(ItemsViewModelOnline(mfrName, country))
                     }
 
@@ -92,8 +95,21 @@ class SecondFragment : Fragment() {
         recyclerview.adapter = adapter
         adapter.setOnItemClickListener(object  : AdapterOnline.onItemClickListener{
             override fun onItemClick(position: Int) {
-                Log.d("mm","som")
+//                Log.d("mm","som")
+                val clickedItem = dataOnline[position]
+
+                // Create a bundle and add the Parcelable object
+                val bundle = Bundle()
+                bundle.putParcelable("clickedItem", clickedItem)
+                Log.d("sanu", clickedItem.toString())
+                val newFragment = ThirdFragment()
+                newFragment.arguments = bundle
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragmentContainer, newFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
             }
+
 
         })
 //        progerssBar.visibility = View.GONE
