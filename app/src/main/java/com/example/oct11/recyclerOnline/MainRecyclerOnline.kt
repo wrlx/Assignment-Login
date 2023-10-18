@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 
 import android.view.View
 import android.widget.ProgressBar
@@ -68,5 +69,11 @@ class MainRecyclerOnline : AppCompatActivity() {
         adapter = AdapterOnline(dataOnline)
         recyclerview.adapter = adapter
         progerssBar.visibility=View.GONE
+
+        adapter.setOnItemClickListener(object  : AdapterOnline.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                Log.d("mm","som")
+            }
+        })
     }
 }

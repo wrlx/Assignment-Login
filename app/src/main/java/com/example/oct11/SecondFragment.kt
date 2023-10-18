@@ -4,6 +4,7 @@ package com.example.oct11
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,6 +80,7 @@ class SecondFragment : Fragment() {
                         val mfrName = item.Mfr_Name
                         dataOnline.add(ItemsViewModelOnline(mfrName, country))
                     }
+
                     requireActivity().runOnUiThread {
                         adapter.notifyDataSetChanged()
                     }
@@ -88,6 +90,12 @@ class SecondFragment : Fragment() {
 
         adapter = AdapterOnline(dataOnline)
         recyclerview.adapter = adapter
+        adapter.setOnItemClickListener(object  : AdapterOnline.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                Log.d("mm","som")
+            }
+
+        })
 //        progerssBar.visibility = View.GONE
     }
 
