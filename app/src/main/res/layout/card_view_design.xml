@@ -25,6 +25,8 @@
             android:text="Item"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:padding="5dp"
+
              />
 
         <TextView
@@ -34,8 +36,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="15dp"
             android:text="Item"
-            android:textSize="10sp"
-            android:layout_marginTop="5dp"/>
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+           />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

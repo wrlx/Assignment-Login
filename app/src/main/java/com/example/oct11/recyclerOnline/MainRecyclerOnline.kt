@@ -1,21 +1,34 @@
 package com.example.oct11.recyclerOnline
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
+
+import android.view.View
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.oct11.R
-import com.example.oct11.recycler.AdapterOffline
-import com.example.oct11.recycler.ItemsViewModel
+import com.example.oct11.recyclerOnline.dataclass.ItemsViewModelOnline
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MainRecyclerOnline : AppCompatActivity() {
-    val dataOnline = ArrayList<ItemsViewModel>()
 
-//    val data = ArrayList<ItemsViewModel>()
-    lateinit var adapter: AdapterOffline
+class MainRecyclerOnline : AppCompatActivity() {
+    val dataOnline = ArrayList<ItemsViewModelOnline>()
+
+
+    lateinit var adapter: AdapterOnline
+//    fun View.show() {
+//        visibility = View.VISIBLE
+//    }
+//    fun View.hide() {
+//        visibility = View.GONE
+//    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_recycler_online)
@@ -23,13 +36,20 @@ class MainRecyclerOnline : AppCompatActivity() {
         val carApi = RetrofitHelperCar.getInstance().create(CarApiFetchable::class.java)
 
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerviewonline)
-
+        val progerssBar = findViewById<ProgressBar>(R.id.progressBarRecycler)
 
         recyclerview.layoutManager = LinearLayoutManager(this)
 
 
         GlobalScope.launch {
+            progerssBar.visibility = View.VISIBLE
+//            recyclerview.visibility = View.INVISIBLE
             val result = carApi.getCarData()
+
+            progerssBar.visibility = View.INVISIBLE
+
+//            recyclerview.visibility = View.VISIBLE
+
             if (result != null) {
                 val temp = result.body()?.Results
 
@@ -37,7 +57,7 @@ class MainRecyclerOnline : AppCompatActivity() {
                     for (item in temp) {
                         val country = item.Country
                         val mfrName = item.Mfr_Name
-                        dataOnline.add(ItemsViewModel(mfrName, country))
+                        dataOnline.add(ItemsViewModelOnline(mfrName, country))
                     }
                     runOnUiThread {
                         adapter.notifyDataSetChanged()
@@ -45,8 +65,8 @@ class MainRecyclerOnline : AppCompatActivity() {
                 }
             }
         }
-        adapter = AdapterOffline(dataOnline)
+        adapter = AdapterOnline(dataOnline)
         recyclerview.adapter = adapter
-
+        progerssBar.visibility=View.GONE
     }
 }

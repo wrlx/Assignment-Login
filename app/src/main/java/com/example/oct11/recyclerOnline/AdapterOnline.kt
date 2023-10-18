@@ -1,14 +1,16 @@
 package com.example.oct11.recyclerOnline
 
-import com.example.oct11.recyclerOnline.dataclass.ItemsViewModelOnline
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.oct11.R
+import com.example.oct11.recyclerOnline.dataclass.ItemsViewModelOnline
 
-class AdapterOnline(private val mList: List<ItemsViewModelOnline>) : RecyclerView.Adapter<AdapterOnline.ViewHolder>() {
+
+class AdapterOnline(private val mList: ArrayList<ItemsViewModelOnline>) : RecyclerView.Adapter<AdapterOnline.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -19,9 +21,9 @@ class AdapterOnline(private val mList: List<ItemsViewModelOnline>) : RecyclerVie
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val ItemsViewModel = mList[position]
-        holder.itemOne.text = ItemsViewModel.textOnlineOne
-        holder.itemTwo.text = ItemsViewModel.textOnlineTwo
+        val ItemsViewModelOnline = mList[position]
+        holder.itemOne.text = ItemsViewModelOnline.textOne
+        holder.itemTwo.text = ItemsViewModelOnline.textTwo
 
     }
     override fun getItemCount(): Int {

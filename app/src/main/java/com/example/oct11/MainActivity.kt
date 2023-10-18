@@ -133,14 +133,5 @@ fun Context.startNewActivity(destination: Class<*>, dataMap: HashMap<String, Str
 
         }
 
-
-//        val quoteApi = RetrifitHelperUserAuth.getInstance().create(UserFetchable::class.java)
-//        GlobalScope.launch {
-//            val userAuthData = UserData("kdulyt", "5t6q4KC7O")
-//            val result = quoteApi.postData(userAuthData)
-//            if(result != null) {
-//                Log.d("login : ", result.body().toString())
-//            }
-//        }
     }
 }

@@ -1,5 +1,5 @@
 package com.example.oct11.recyclerOnline.dataclass
 
-data class ItemsViewModelOnline(val textOnlineOne: String, val textOnlineTwo: String){
+data class ItemsViewModelOnline(val textOne: String, val textTwo: String){
 
 }
