@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     app:barrierMargin="2dp"
     tools:actionBarNavMode="list"
-    tools:context=".MainActivity"
+    tools:context=".auth.view.MainActivity"
     android:background="@drawable/wave_home">
 
     <LinearLayout
@@ -18,7 +18,7 @@
 
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MainActivity"
+        tools:context=".auth.view.MainActivity"
         tools:layout_editor_absoluteX="0dp">
 
 

@@ -1,0 +1,12 @@
+package com.example.oct11.auth.model
+
+data class UserAuth(
+    val email: String,
+    val firstName: String,
+    val gender: String,
+    val id: Int,
+    val image: String,
+    val lastName: String,
+    val token: String,
+    val username: String
+)

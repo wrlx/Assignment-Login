@@ -22,19 +22,19 @@
             android:name=".bottomnavigation.HomeNav"
             android:exported="false" />
         <activity
-            android:name=".recyclerOnline.MainRecyclerOnline"
+            android:name=".recycleronlineapi.manufactureview.MainRecyclerOnline"
             android:exported="false" />
         <activity
-            android:name=".recycler.MainRecycler"
+            android:name=".recyclerofflinedata.MainRecycler"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".signup.Signup"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".home.Home"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".auth.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

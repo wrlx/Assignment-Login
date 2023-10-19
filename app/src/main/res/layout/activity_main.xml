@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:barrierMargin="2dp"
     tools:actionBarNavMode="list"
-    tools:context=".MainActivity">
+    tools:context=".auth.view.MainActivity">
 
 
     <EditText
