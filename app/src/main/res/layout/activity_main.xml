@@ -44,7 +44,6 @@
         app:layout_constraintVertical_bias="0.407" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="75dp"
         android:layout_height="26dp"
         android:text="@string/password"
@@ -56,7 +55,6 @@
         app:layout_constraintVertical_bias="0.478" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="75dp"
         android:layout_height="26dp"
         android:text="@string/user"
@@ -99,7 +97,7 @@
         app:layout_constraintVertical_bias="0.73" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/toForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forgotpassword"

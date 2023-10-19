@@ -1,5 +1,6 @@
 package com.example.oct11
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,6 +24,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class FirstFragment : Fragment() {
+
+    private lateinit var etNameDisplay: TextView
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,6 +36,8 @@ class FirstFragment : Fragment() {
         arguments?.let {
 
         }
+
+
     }
 
 
@@ -72,7 +77,18 @@ class FirstFragment : Fragment() {
 
         return view
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        etNameDisplay = view.findViewById(R.id.fragmentOneUserName)
+        val sh = requireContext().getSharedPreferences("LoginData", MODE_PRIVATE)
+        val fname = sh.getString("fName", "")
+        val lname = sh.getString("lName", "")
+        val name = fname+ " " +lname
+        etNameDisplay.setText(name.toString())
+//        age.setText(a.toString())
+
+    }
 
 
 

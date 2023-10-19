@@ -25,6 +25,12 @@ import retrofit2.Response
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
+    lateinit var userShared: String
+    lateinit var emailShared: String
+    lateinit var firstNameShared: String
+    lateinit var lastNameShared: String
+    lateinit var userEmail: String
+
 
     fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(this, message, duration).show()
@@ -55,7 +61,15 @@ fun Context.startNewActivity(destination: Class<*>, dataMap: HashMap<String, Str
             val userAuthData = UserData(userTemp, passwordTemp)
             val result = quoteApi.postData(userAuthData)
             apiResponse = result
-            var userEmail = result.body()?.email.toString()
+
+            result.body()?.let { user ->
+                userShared = user.username.toString()
+                emailShared = user.email.toString()
+                firstNameShared = user.firstName.toString()
+                lastNameShared = user.lastName.toString()
+                userEmail = user.email.toString()
+            }
+//            var userEmail = result.body()?.email.toString()
             try{
                 if(result.isSuccessful || (password == "admin" && userTemp == "admin")) {
                     Log.d("login : ", result.body().toString())
@@ -64,9 +78,9 @@ fun Context.startNewActivity(destination: Class<*>, dataMap: HashMap<String, Str
                         "message_key1" to message,
                         "message_key2" to userEmail,
                     )
+                    storeToSharedPreference()
                     startNewActivity(Home::class.java, dataMap)
 
-//                    startNewActivity(Home::class.java, "message_key", message)
                 }else{
                     applicationContext.showToast("Invalid Credentials")
                 }
@@ -124,14 +138,27 @@ fun Context.startNewActivity(destination: Class<*>, dataMap: HashMap<String, Str
             val userName = etUsername.text.toString()
             val password = etPassword.text.toString()
             doLoginCheck(userName, password)
+
         }
         btnSignup.setOnClickListener {
             val dataMap = hashMapOf(
-                "message_key1" to "Sign Up Here!",
+                "message_key1" to "Sign Up Here!"
             )
             startNewActivity(Signup::class.java, dataMap)
 
         }
 
+    }
+
+    private fun storeToSharedPreference() {
+        val sharedPreferences = getSharedPreferences("LoginData", MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+
+        // write all the data entered by the user in SharedPreference and apply
+        myEdit.putString("uName", userShared.toString())
+        myEdit.putString("email", emailShared.toString())
+        myEdit.putString("fName", firstNameShared.toString())
+        myEdit.putString("lName", lastNameShared.toString())
+        myEdit.apply()
     }
 }
