@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.example.oct11.R
+import com.example.oct11.carmvvm.ManufactureMvvm
 import com.example.oct11.quote.QuoteFragment
 import com.example.oct11.recycleronlineapi.manufactureview.ManufactureFragment
 
@@ -22,7 +23,7 @@ class Home : AppCompatActivity() {
         etEmailDisplay.text = secondMessage
 
         val firstFragment = QuoteFragment()
-        val secondFragment = ManufactureFragment()
+        val secondFragment = ManufactureMvvm()
         val btnFirstFragment = findViewById<Button>(R.id.btnFragmentOne)
         val btnSecondFragment = findViewById<Button>(R.id.btnFragmentTwo)
 
